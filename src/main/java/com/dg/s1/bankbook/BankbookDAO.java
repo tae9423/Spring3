@@ -6,16 +6,27 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.dg.s1.util.DBConnector;
 
+@Repository
 public class BankbookDAO {
 
 	private DBConnector dbConnector;
 
 	public BankbookDAO() {
-
 		dbConnector = new DBConnector();
-
+	}
+	
+	@Autowired
+	public BankbookDAO(DBConnector dbConnector) {
+		this.dbConnector = new DBConnector();
+	}
+	
+	public void setDBConnector(DBConnector dbConnector) {
+		this.dbConnector = new DBConnector();
 	}
 	
 	//setInsert
