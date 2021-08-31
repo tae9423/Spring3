@@ -1,6 +1,7 @@
 package com.dg.s1.bankbook;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,22 +12,19 @@ import org.springframework.stereotype.Repository;
 
 import com.dg.s1.util.DBConnector;
 
-@Repository
+
+
 public class BankbookDAO {
 
 	private DBConnector dbConnector;
 
-	public BankbookDAO() {
-		dbConnector = new DBConnector();
+	
+	public BankbookDAO(DBConnector dbConnector, int num, String name) {
+		this.dbConnector = dbConnector;
 	}
 	
-	@Autowired
-	public BankbookDAO(DBConnector dbConnector) {
-		this.dbConnector = new DBConnector();
-	}
-	
-	public void setDBConnector(DBConnector dbConnector) {
-		this.dbConnector = new DBConnector();
+	public void setDbConnector(DBConnector dbConnector) {
+		this.dbConnector = dbConnector;
 	}
 	
 	//setInsert
