@@ -1,27 +1,34 @@
 package com.dg.s1.bankbook;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/bankbook/*")
 public class BankbookController {
 	
+	@Autowired
+	private BankbookService bankbookService;
+	
 	@RequestMapping(value = "bankbookList.do", method = RequestMethod.GET)
-	public ModelAndView list(Integer [] num) {
-		for(Integer i : num) {
-			System.out.println(i);
-		}
-		System.out.println("bankbook list");
+	public ModelAndView list(ModelAndView mv) {
 		
-		ModelAndView mv = new ModelAndView();
+		ArrayList<BankbookDTO> ar = bankbookService.getlist();
+		
+		for(BankbookDTO bankbookDTO:ar) {
+			System.out.println(bankbookDTO.getBookName());
+		}
 		mv.setViewName("bankbook/bankbookList");
 		return mv;
 	}

@@ -6,21 +6,27 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.dg.s1.util.DBConnector;
+import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class BankbookDAO {
+	
+	@Autowired
+	private DataSource dataSource;
 
-	private DBConnector dbConnector;
-
-	public BankbookDAO() {
-
-		dbConnector = new DBConnector();
-
-	}
 	
 	//setInsert
 	public int setInsert(BankbookDTO bankbookDTO) {
-		Connection con = dbConnector.getConnect();
+		Connection con =null;
+		try {
+			con = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		PreparedStatement st = null;
 		
 		int result = 0;
@@ -41,7 +47,6 @@ public class BankbookDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			dbConnector.disConnect(st, con);
 		}
 		return result;
 	}
@@ -49,7 +54,13 @@ public class BankbookDAO {
 
 	//getInsert
 	public ArrayList<BankbookDTO> getList() {
-		Connection con = dbConnector.getConnect();
+		Connection con =null;
+		try {
+			con = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		PreparedStatement st = null;
 		ResultSet rs = null;
 
@@ -75,14 +86,20 @@ public class BankbookDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			dbConnector.disConnect(rs, st, con);
+		
 		}
 		return ar;
 	}
 
 	public BankbookDTO getSelect(BankbookDTO bankbookDTO) {
 
-		Connection con = dbConnector.getConnect();
+		Connection con = null;
+		try {
+			con = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		BankbookDTO result = null;
@@ -111,7 +128,7 @@ public class BankbookDAO {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			dbConnector.disConnect(rs, st, con);
+			
 		}
 
 		return result;
