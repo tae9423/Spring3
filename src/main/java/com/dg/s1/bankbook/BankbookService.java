@@ -11,6 +11,10 @@ public class BankbookService {
 	@Autowired
 	private BankbookDAO bankbookDAO;
 	
+	public int setDelete(Long bookNumber) {
+		return bankbookDAO.setDelete(bookNumber);
+	}
+	
 	public int setInsert(BankbookDTO bankbookDTO) {
 		return bankbookDAO.setInsert(bankbookDTO);
 	}

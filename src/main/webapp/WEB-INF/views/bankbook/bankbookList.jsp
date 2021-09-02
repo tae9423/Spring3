@@ -13,7 +13,7 @@
 	<h1>List Renewal</h1>
 
 	<div class="container-fluid">
-		<div class="col-md-8 mx-auto my-0">
+		<div class="col-md-7 my-2 mx-auto my-0">
 
 			<table class="table table-striped table-hover">
 				<tr>
@@ -35,6 +35,8 @@
 
 
 			</table>
+			
+			<a href="./bankbookInsert" class="btn btn-danger">ADD</a>
 		</div>
 	</div>
 

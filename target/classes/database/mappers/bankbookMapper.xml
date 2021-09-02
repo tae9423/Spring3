@@ -4,6 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
   <mapper namespace="com.dg.s1.bankbook.BankbookDAO">
+  
+  	<delete id="setDelete" parameterType="java.lang.Long">
+  		DELETE BANKBOOK WHERE BOOKNUMBER=#{bookNumber}
+  	</delete>
+  	
   	<insert id="setInsert" parameterType="com.dg.s1.bankbook.BankbookDTO">
   		INSERT INTO BANKBOOK (bookNumber, bookName, bookRate, bookSale)
   		VALUES (bankbook_seq.nextval, #{bookName}, #{bookRate}, #{bookSale})
